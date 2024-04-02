@@ -109,7 +109,7 @@ const CardNFTMusic: FC<CardNFTMusicProps> = ({
 
       {/* LIKE AND AVATARS */}
       <div className="absolute top-2.5 left-2.5 z-10 flex items-center space-x-2">
-        <LikeButton liked={isLiked} className=" !h-9" />
+        {/* <LikeButton liked={isLiked} className=" !h-9" /> */}
       </div>
 
       {/* ----TIME--- */}
@@ -129,7 +129,7 @@ const CardNFTMusic: FC<CardNFTMusicProps> = ({
           />
         </div>
 
-        <Link
+        {/* <Link
           href={"/nft-detail"}
           className="block p-5 mt-5 bg-white dark:bg-neutral-800 shadow-xl dark:shadow-2xl rounded-3xl rounded-tl-none"
         >
@@ -147,10 +147,10 @@ const CardNFTMusic: FC<CardNFTMusicProps> = ({
               99 in stock
             </span>
           </div>
-        </Link>
+        </Link> */}
       </div>
 
-      <Link href={"/nft-detail"} className="absolute inset-0 "></Link>
+      {/* <Link href={"/nft-detail"} className="absolute inset-0 "></Link> */}
     </div>
   );
 };

@@ -52,14 +52,14 @@ const CardNFTVideo: FC<CardNFTVideoProps> = ({
           <VideoForNft featuredImage={featuredImage} />
         </div>
 
-        <LikeButton
+        {/* <LikeButton
           liked={isLiked}
           className="absolute top-3 right-3 z-10 !h-9"
-        />
+        /> */}
       </div>
 
       <div className="p-5 relative">
-        <Link href={"/nft-detail"} className="absolute inset-0"></Link>
+        {/* <Link href={"/nft-detail"} className="absolute inset-0"></Link> */}
         <div className="flex justify-between items-center">
           <h2 className={`sm:text-lg font-semibold hover:text-primary-6000`}>
             NFT Video #{Math.floor(Math.random() * 1000) + 1000}

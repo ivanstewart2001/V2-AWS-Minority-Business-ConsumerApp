@@ -18,6 +18,18 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "consumer-app131625-dev.s3.us-east-1.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "ownerapp175747-dev.s3.us-east-1.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

@@ -188,7 +188,7 @@ const PageUploadItem = ({}) => {
                                   </RadioGroup.Description>
                                   {checked && (
                                     <div className="flex-shrink-0 text-white">
-                                      <CheckIcon className="w-6 h-6" />
+                                      {/* <CheckIcon className="w-6 h-6" /> */}
                                     </div>
                                   )}
                                 </div>
@@ -245,12 +245,12 @@ const PageUploadItem = ({}) => {
 
             {/* ---- */}
             <div className="pt-2 flex flex-col sm:flex-row space-y-3 sm:space-y-0 space-x-0 sm:space-x-3 ">
-              <ButtonPrimary href="/nft-detail" className="flex-1">
+              {/* <ButtonPrimary href="/nft-detail" className="flex-1">
                 Upload item
               </ButtonPrimary>
               <ButtonSecondary href="/nft-detail" className="flex-1">
                 Preview item
-              </ButtonSecondary>
+              </ButtonSecondary> */}
             </div>
           </div>
         </div>

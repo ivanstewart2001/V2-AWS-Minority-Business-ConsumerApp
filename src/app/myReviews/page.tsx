@@ -1,28 +1,44 @@
-import React from "react";
-import SectionAds from "./SectionAds";
-import SectionMagazine5 from "./SectionMagazine5";
-import SectionLatestPosts from "./SectionLatestPosts";
-import BgGlassmorphism from "@/components/BgGlassmorphism/BgGlassmorphism";
-import SectionBecomeAnAuthor from "@/components/SectionBecomeAnAuthor/SectionBecomeAnAuthor";
+import { Account, UserProfile } from "@/API";
+import AccountClientComponent from "@/page_components/account/AccountClientComponent";
+import MyReviewsClientComponent from "@/page_components/myReviews/MyReviewsClientComponent";
+import SearchClientComponent from "@/page_components/search/SearchClientComponent";
+import fetchAccount from "@/utils/data/fetchAccount";
+import { fetchBusinessProfile } from "@/utils/data/fetchBusinessProfile";
+import {
+  fetchBusinessProfiles,
+  individualBusinessProfileReturnType,
+} from "@/utils/data/fetchBusinessProfiles";
+import { individualReviewReturnType } from "@/utils/data/fetchReview";
+import fetchUserProfile from "@/utils/data/fetchUserProfile";
+import { fetchUserReviews } from "@/utils/data/fetchUserReviews";
+import { cookies } from "next/headers";
 
-// DEMO DATA
+export default async function MyReviewsPage() {
+  const cookie = cookies();
+  const userId = cookie.get("userId")?.value;
 
-const BlogPage: React.FC = () => {
+  let userReviews: individualReviewReturnType[] = [];
+  if (userId) {
+    userReviews = await fetchUserReviews({ userId });
+  }
+
+  let businessProfiles: individualBusinessProfileReturnType[] = [];
+  if (userId && userReviews.length > 0) {
+    for (const review of userReviews) {
+      try {
+        const businessProfile = (await fetchBusinessProfile({
+          userId,
+          businessId: review.businessId,
+        })) as individualBusinessProfileReturnType;
+        businessProfiles.push(businessProfile);
+      } catch (error) {}
+    }
+  }
+
   return (
-    <div className="nc-BlogPage overflow-hidden relative">
-      {/* ======== BG GLASS ======== */}
-      <BgGlassmorphism />
-      {/* ======== ALL SECTIONS ======== */}
-      <div className="container relative">
-        {/* === SECTION 8 === */}
-        <SectionLatestPosts className="py-16 lg:py-28" />
-
-        <div className="pb-16 lg:pb-28">
-          <hr className="border-neutral-200 dark:border-neutral-700" />
-        </div>
-      </div>
-    </div>
+    <MyReviewsClientComponent
+      businessProfiles={businessProfiles}
+      userReviews={userReviews}
+    />
   );
-};
-
-export default BlogPage;
+}
