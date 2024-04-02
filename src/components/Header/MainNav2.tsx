@@ -62,12 +62,12 @@ const MainNav2: FC<MainNav2Props> = () => {
               >
                 Create
               </ButtonPrimary>
-              <ButtonSecondary
+              {/* <ButtonSecondary
                 href={"/connect-wallet"}
                 sizeClass="px-4 py-2 sm:px-5"
               >
                 Connect Wallet
-              </ButtonSecondary>
+              </ButtonSecondary> */}
             </div>
             <div className="flex items-center space-x-1 xl:hidden">
               <ButtonPrimary

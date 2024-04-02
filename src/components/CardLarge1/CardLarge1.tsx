@@ -45,9 +45,9 @@ const CardLarge1: FC<CardLarge1Props> = ({
         <div className="nc-CardLarge1__left p-4 sm:p-8 xl:py-14 md:px-10 bg-white dark:bg-neutral-900 shadow-lg rounded-3xl space-y-3 sm:space-y-8 ">
           {/* TITLE */}
           <h2 className="text-2xl lg:text-3xl 2xl:text-5xl font-semibold ">
-            <Link href={"/nft-detail"} title="Walking On Air">
+            {/* <Link href={"/nft-detail"} title="Walking On Air">
               {randomTitle[0]}
-            </Link>
+            </Link> */}
           </h2>
 
           {/* AUTHOR AND COLLECTION */}
@@ -97,12 +97,12 @@ const CardLarge1: FC<CardLarge1Props> = ({
 
           {/* DESCRIPTION */}
           <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
-            <ButtonPrimary href={"/nft-detail"} className="flex-1">
+            {/* <ButtonPrimary href={"/nft-detail"} className="flex-1">
               Place a bid
             </ButtonPrimary>
             <ButtonSecondary href={"/nft-detail"} className="flex-1">
               View item
-            </ButtonSecondary>
+            </ButtonSecondary> */}
           </div>
         </div>
         <div className="p-4 sm:pt-8 sm:px-10 ">
@@ -116,7 +116,7 @@ const CardLarge1: FC<CardLarge1Props> = ({
 
       <div className="w-full lg:w-[64%] relative ">
         <div className="nc-CardLarge1__right ">
-          <Link href={"/nft-detail"}>
+          {/* <Link href={"/nft-detail"}>
             <NcImage
               containerClassName="aspect-w-1 aspect-h-1 relative"
               className="absolute inset-0 object-cover rounded-3xl sm:rounded-[40px] border-4 sm:border-[14px] border-white dark:border-neutral-800"
@@ -124,13 +124,13 @@ const CardLarge1: FC<CardLarge1Props> = ({
               alt={"title"}
               sizes="(max-width: 768px) 100vw, 840px"
             />
-          </Link>
+          </Link> */}
 
           {/* META TYPE */}
           <ItemTypeVideoIcon className="absolute w-8 h-8 md:w-10 md:h-10 left-3 bottom-3 sm:left-7 sm:bottom-7 " />
 
           {/* META FAVORITES */}
-          <LikeButton className="absolute right-3 top-3 sm:right-7 sm:top-7" />
+          {/* <LikeButton className="absolute right-3 top-3 sm:right-7 sm:top-7" /> */}
         </div>
       </div>
     </div>

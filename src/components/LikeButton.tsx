@@ -1,27 +1,108 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { GraphQLResult, generateClient } from "aws-amplify/api";
+import { useMutation } from "react-query";
+import { toast } from "react-toastify";
+import { getUserProfile as getUserProfileMutation } from "@/graphql/queries";
+import { updateUserProfile as updateUserProfileMutation } from "@/graphql/mutations";
+
+const client = generateClient();
 
 export interface LikeButtonProps {
   className?: string;
   liked?: boolean;
+  userId: string;
+  businessId: string;
 }
 
 const LikeButton: React.FC<LikeButtonProps> = ({
   className = "",
   liked = false,
+  userId,
+  businessId,
 }) => {
   const [isLiked, setIsLiked] = useState(liked);
 
-  // make random for demo
-  useEffect(() => {
-    setIsLiked(Math.random() > 0.5);
-  }, []);
+  const toggleLikeMutation = useMutation(
+    async () => {
+      console.log("userId", userId);
+
+      const user = await client.graphql({
+        query: getUserProfileMutation,
+        variables: {
+          id: userId,
+        },
+      });
+
+      if (!user.data) {
+        throw new Error("User not found");
+      }
+
+      if (!user.data.getUserProfile?.likedBusinesses) {
+        await client.graphql({
+          query: updateUserProfileMutation,
+          variables: {
+            input: {
+              id: userId,
+              likedBusinesses: [businessId],
+            },
+          },
+        });
+      } else if (
+        user.data.getUserProfile?.likedBusinesses &&
+        !user.data.getUserProfile?.likedBusinesses.includes(businessId)
+      ) {
+        await client.graphql({
+          query: updateUserProfileMutation,
+          variables: {
+            input: {
+              id: userId,
+              likedBusinesses: [
+                ...user.data.getUserProfile.likedBusinesses,
+                businessId,
+              ],
+            },
+          },
+        });
+      } else if (
+        user.data.getUserProfile?.likedBusinesses &&
+        user.data.getUserProfile?.likedBusinesses.includes(businessId)
+      ) {
+        await client.graphql({
+          query: updateUserProfileMutation,
+          variables: {
+            input: {
+              id: userId,
+              likedBusinesses: user.data.getUserProfile.likedBusinesses.filter(
+                (id: string) => id !== businessId
+              ),
+            },
+          },
+        });
+      }
+    },
+    {
+      onError: (err: Error) => {
+        toast(err.message, {
+          autoClose: 3000,
+          type: "error",
+          position: "bottom-right",
+        });
+      },
+      onSuccess: (data) => {
+        setIsLiked(!isLiked);
+      },
+    }
+  );
 
   return (
     <button
       className={`w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-900 text-neutral-700 dark:text-slate-200 nc-shadow-lg ${className}`}
-      onClick={() => setIsLiked(!isLiked)}
+      onClick={() => {
+        toggleLikeMutation.mutate();
+      }}
+      disabled={toggleLikeMutation.isLoading}
     >
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
         <path

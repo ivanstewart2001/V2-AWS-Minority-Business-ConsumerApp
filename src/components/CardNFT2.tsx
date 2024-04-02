@@ -74,7 +74,7 @@ const CardNFT2: FC<CardNFT2Props> = ({ className = "", isLiked }) => {
 
         {/* LIKE AND AVATARS */}
         <div className="absolute top-2.5 left-2.5 z-10 flex items-center space-x-2">
-          <LikeButton liked={isLiked} className=" !h-9" />
+          {/* <LikeButton liked={isLiked} className=" !h-9" /> */}
           {renderAvatars()}
         </div>
 
@@ -108,7 +108,7 @@ const CardNFT2: FC<CardNFT2Props> = ({ className = "", isLiked }) => {
         </div>
       </div>
 
-      <Link href={"/nft-detail"} className="absolute inset-0"></Link>
+      {/* <Link href={"/nft-detail"} className="absolute inset-0"></Link> */}
     </div>
   );
 };

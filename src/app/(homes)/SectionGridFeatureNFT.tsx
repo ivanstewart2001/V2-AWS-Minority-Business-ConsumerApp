@@ -6,7 +6,7 @@ import HeaderFilterSection from "@/components/HeaderFilterSection";
 const SectionGridFeatureNFT = () => {
   return (
     <div className="nc-SectionGridFeatureNFT relative">
-      <HeaderFilterSection />
+      {/* <HeaderFilterSection />
       <div
         className={`grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 `}
       >
@@ -16,7 +16,7 @@ const SectionGridFeatureNFT = () => {
       </div>
       <div className="flex mt-16 justify-center items-center">
         <ButtonSecondary loading>Show me more</ButtonSecondary>
-      </div>
+      </div> */}
     </div>
   );
 };
